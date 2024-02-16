@@ -10,9 +10,9 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     {% if title %}
-    <title>Django blog | {{ title }}</title>
+    <title>NSSS blog | {{ title }}</title>
     {% else %}
-    <title>Django Blog</title>
+    <title>NSSS Blog</title>
     {% endif %}
 </head>
 
@@ -20,7 +20,7 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="/">Django Blog</a>
+                <a class="navbar-brand mr-4" href="/">NSSS Blog</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,11 @@
                         {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-item nav-link" style="margin: -1px;">Logout</button>
+                        </form>
+                        
                         {% else %}
                         <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                         <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
